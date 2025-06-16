@@ -50,6 +50,7 @@ class TestAccountService(TestCase):
         """Runs once after each test case"""
         db.session.remove()
 
+
     ######################################################################
     #  H E L P E R   M E T H O D S
     ######################################################################
@@ -123,4 +124,23 @@ class TestAccountService(TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
-    # ADD YOUR TEST CASES HERE ...
+    # ADD YOUR TEST CASES HERE ..
+    def test_read_an_account(self):
+        """It should read an Account"""
+        account = self.create_accounts(1)[0]
+        response = self.client.get(
+            BASE_URL/{account.id},
+            content_type="application/json"
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.get_json()
+        self.assertEqual(data["name"], account.name)
+
+    def test_account_not_found(self):
+         account = self.create_accounts(1)[0]
+         response = self.client.get(
+            BASE_URL/0,
+            content_type="application/json"
+        )
+         self.assertEqual(response.status_code, status.HTTP_204_NOT_FOUND)
+
