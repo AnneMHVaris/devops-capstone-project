@@ -184,3 +184,7 @@ def test_security_headers(self):
         for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
             
+def test_cors_secority(self):
+        """It should return security headers"""
+        response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
