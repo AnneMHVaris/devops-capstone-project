@@ -36,3 +36,18 @@ spec:
         value: $(params.branch)
       runAfter:
         - init
+
+    - name: lint
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace          
+      taskRef:
+        name: flake8
+      params:
+      - name: image
+        value: $(params.repo-url)
+      - name: revision
+        value: $(params.branch)
+      runAfter:
+        - init
+
