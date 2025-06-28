@@ -144,6 +144,7 @@ class TestAccountService(TestCase):
         )
          self.assertEqual(response.status_code, status.HTTP_204_NOT_FOUND)
 
+    #def test_update_an_account(self):
     def test_update_an_account(self):
         test_account = AccountFactory()
         logging.debug("Test Account: %s", test_account.serialize())
