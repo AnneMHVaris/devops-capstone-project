@@ -75,7 +75,7 @@ def list_accounts():
 
 # ... place you code here to READ an account ...
 @app.route("/acoounts(/<int:account_id>", methods=["GET"])
-def read_an_account():
+def read_an_account(account_id):
     account = Account.find(account_id)
     if not account:
         abort(status.HTTP_404_NOT_FOUND)
