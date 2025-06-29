@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.9-slim
 
-services: 
-  postgres: 
-    image: postgres:alpine
-    ports: 
-      - 5432:5432
-    env: 
-      POSTGRES_PASSWORD: pg3cr3t
-      POSTGRES_DB: testdb
+    services: 
+      postgres: 
+        image: postgres:alpine
+        ports: 
+        - 5432:5432
+        env: 
+          POSTGRES_PASSWORD: pg3cr3t
+          POSTGRES_DB: testdb
 
       options:  >-
         health-cmd: pg_isready
@@ -28,7 +28,7 @@ services:
         health_timeout: 5s
         health_retries: 5
 
-  steps:
+    steps:
     - name: Checkout
       uses: actions/checkout@v2
 
@@ -44,8 +44,8 @@ services:
 
     - name: Run unit tests with nose
       run: nosetests 
-      env: 
-        DATABASE_URI "postgresql:pg3cr3t@postgres:5432/testdb"
+        env: 
+          DATABASE_URI "postgresql:pg3cr3t@postgres:5432/testdb"
 
         
 
