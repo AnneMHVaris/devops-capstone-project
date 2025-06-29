@@ -28,7 +28,7 @@ services:
             health_timeout: 5s
             health_retries: 5
 
-  steps:
+    steps:
         - name: Checkout
           uses: actions/checkout@v2
 
